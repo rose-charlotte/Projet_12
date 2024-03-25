@@ -1,0 +1,18 @@
+@import "src/index.scss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-left: 200px;
+    margin-top: 100px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.name {
+    color: $redColor;
+}

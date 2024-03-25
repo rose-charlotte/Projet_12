@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 117px;
+    height: 100vh;
+    background-color: black;
+}
+
+.navContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 200px;
+}
+
+.icone {
+    width: 64px;
+    height: 64px;
+}
+.text {
+    color: white;
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+    padding-bottom: 100px;
+    align-self: center;
+}
