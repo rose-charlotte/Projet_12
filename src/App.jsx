@@ -3,6 +3,10 @@ import { LeftNavBar } from "./Components/LeftNavBar/LeftNavBar";
 import { TopNavBar } from "./Components/TopNavBar/TopNavBar";
 import { Welcome } from "./Components/Welcome/Welcome";
 
+/**
+ * 
+ * @returns {React.JSX.Element} app component
+ */
 function App() {
     return (
         <>

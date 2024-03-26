@@ -1,5 +1,9 @@
 import style from "./LeftNavBar.module.scss";
 
+/**
+ * 
+ * @returns {React.JSX.Element} left NavBar
+ */
 export function LeftNavBar() {
     return (
         <div className={style.container}>

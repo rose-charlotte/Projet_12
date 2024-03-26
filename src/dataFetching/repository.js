@@ -1,3 +1,5 @@
+/** @module repository */
+
 import { USER_MAIN_DATA } from "../_mocks_/store.js";
 
 /**

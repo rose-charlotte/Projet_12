@@ -1,5 +1,9 @@
 import style from "./TopNavBar.module.scss";
 
+/**
+ * 
+ * @returns {React.JSX.Element} Top NavBar
+ */
 export function TopNavBar() {
     return (
         <nav className={style.container}>

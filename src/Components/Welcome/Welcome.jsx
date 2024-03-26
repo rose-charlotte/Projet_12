@@ -1,6 +1,10 @@
 import { getUserInfos } from "../../dataFetching/repository";
 import style from "./Welcome.module.scss";
 
+/**
+ * 
+ * @returns {React.JSX.Element} Message d'acceuil personalisé
+ */
 export function Welcome() {
     const id = 18;
     const userInfos = getUserInfos(id);
