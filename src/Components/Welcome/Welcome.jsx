@@ -1,15 +1,16 @@
-import { getUserInfos } from "../../dataFetching/repository";
+import { getUserInfos } from "../../repositories/userRepository";
 import style from "./Welcome.module.scss";
+import { useUserId } from "../../utils/userHooks";
 
 /**
  * 
  * @returns {React.JSX.Element} Message d'acceuil personalisé
  */
 export function Welcome() {
-    const id = 18;
-    const userInfos = getUserInfos(id);
+    //const id = 18;
 
-    console.log(userInfos);
+    const id = useUserId();
+    const userInfos = getUserInfos(id);
 
     return (
         <div className={style.container}>
