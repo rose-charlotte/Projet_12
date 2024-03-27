@@ -15,7 +15,7 @@ function getUserData() {
  *
  * @returns {number[]} user ids
  */
-export function getUserId() {
+export function getAllUserIds() {
     const usersId = USER_MAIN_DATA.map(userId => userId.id);
 
     return usersId;
