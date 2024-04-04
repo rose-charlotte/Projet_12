@@ -5,6 +5,7 @@ import { LeftNavBar } from "./Components/LeftNavBar/LeftNavBar";
 import { TopNavBar } from "./Components/TopNavBar/TopNavBar";
 import { Welcome } from "./Components/Welcome/Welcome";
 import { UserContext } from "./utils/contexts";
+import { AverageSession } from "./Components/AverageSession/AverageSession";
 
 /**
  *
@@ -23,6 +24,7 @@ function App() {
                 <div className={style.container}>
                     <Welcome />
                     <DailySession />
+                    <AverageSession />
                 </div>
             </main>
         </UserContext.Provider>

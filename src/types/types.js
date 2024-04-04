@@ -39,3 +39,17 @@
  * @property {number} kilogram
  * @property {number} calories
  */
+
+/**
+ * @typedef UserAverageSessions
+ * @type {object}
+ * @property {number} userId
+ * @property {SessionAverage[]} averageSession
+ */
+
+/**
+ * @typedef SessionAverage
+ * @type {object}
+ * @property {number} day
+ * @property {number} sessionLenght
+ */
