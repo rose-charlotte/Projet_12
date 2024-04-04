@@ -1,0 +1,14 @@
+.averageSessionArticle {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+    border: 1px solid black;
+    background-color: aqua;
+}
+
+.averageSessionList {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

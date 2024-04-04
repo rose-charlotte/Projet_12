@@ -25,9 +25,8 @@ export function DailySession() {
         getUserActivitySession();
     }, [userActivities]);
 
-    console.log(userActivities);
     return (
-        <article className={style.article}>
+        <article className={style.ActivitiesArticle}>
             <h1 className={style.title}>Activité quotidienne</h1>
 
             {userActivities?.map((activity) => (

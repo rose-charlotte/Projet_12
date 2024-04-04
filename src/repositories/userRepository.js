@@ -30,7 +30,6 @@ export function getUserInfos(id) {
     const usersData = getUserData();
     const userData = usersData.find((userData) => userData.id === id);
     const userInfos = userData?.userInfos;
-    console.log(userInfos);
     return userInfos;
 }
 

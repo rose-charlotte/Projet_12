@@ -25,7 +25,6 @@ export function Welcome() {
         getUserData();
     }, [userInfos]);
 
-    console.log(userInfos);
     return (
         <div className={style.titleContainer}>
             <h1 className={style.title}>
