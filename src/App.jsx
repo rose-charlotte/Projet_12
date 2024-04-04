@@ -7,7 +7,7 @@ import { Welcome } from "./Components/Welcome/Welcome";
 import { UserContext } from "./utils/contexts";
 
 /**
- * 
+ *
  * @returns {React.JSX.Element} app component
  */
 function App() {
@@ -15,13 +15,15 @@ function App() {
 
     return (
         <UserContext.Provider value={{ userId, setUserId }}>
-            <header className={style.navBar}>
+            <header>
                 <TopNavBar />
             </header>
             <main className={style.main}>
                 <LeftNavBar />
-                <Welcome />
-                <DailySession />
+                <div className={style.container}>
+                    <Welcome />
+                    <DailySession />
+                </div>
             </main>
         </UserContext.Provider>
     );
