@@ -1,6 +1,6 @@
 import style from "./DailySession.module.scss";
 import { useUserId } from "../../utils/userHooks";
-import { getUserActivity } from "../../repositories/useActivityRepository";
+import { getUserActivity } from "../../repositories/userRepository";
 import { useEffect, useState } from "react";
 
 /**
@@ -11,19 +11,17 @@ export function DailySession() {
     const id = useUserId();
     const [userActivities, setUserActivities] = useState();
 
-    console.log(userActivities);
     useEffect(() => {
         /**
          *
-         * @returns {Session} activity session
+         *  Encapsulate getUserInfos call since useEffect cannot be async
          */
         async function getUserActivitySession() {
             const userActivities = await getUserActivity(id);
-            console.log(userActivities);
             setUserActivities(userActivities);
         }
         getUserActivitySession();
-    }, [userActivities]);
+    }, [id, userActivities]);
 
     return (
         <article className={style.ActivitiesArticle}>
