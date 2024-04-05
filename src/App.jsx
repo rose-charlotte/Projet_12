@@ -6,6 +6,7 @@ import { TopNavBar } from "./Components/TopNavBar/TopNavBar";
 import { Welcome } from "./Components/Welcome/Welcome";
 import { UserContext } from "./utils/contexts";
 import { AverageSession } from "./Components/AverageSession/AverageSession";
+import { Completion } from "./Components/Completion/Completion";
 
 /**
  *
@@ -25,6 +26,7 @@ function App() {
                     <Welcome />
                     <DailySession />
                     <AverageSession />
+                    <Completion />
                 </div>
             </main>
         </UserContext.Provider>

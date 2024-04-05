@@ -1,4 +1,4 @@
-import { getUserInfos } from "../../repositories/userRepository";
+import { getUserData } from "../../repositories/userRepository";
 import { useEffect, useState } from "react";
 import style from "./Welcome.module.scss";
 import { useUserId } from "../../utils/userHooks";
@@ -9,27 +9,31 @@ import { useUserId } from "../../utils/userHooks";
  */
 export function Welcome() {
     const id = useUserId();
-    const [userInfos, setUserInfos] = useState();
+    const [userData, setUserData] = useState();
 
     useEffect(() => {
         /**
-         *
-         * @returns {UserInfos} userData
+         * Encapsulate getUserInfos call since useEffect cannot be async
          */
-        async function getUserData() {
-            const userInfos = await getUserInfos(id);
-
-            setUserInfos(userInfos);
+        async function fetchUserData() {
+            try {
+                const userInfos = await getUserData(id);
+                setUserData(userInfos);
+            } catch {
+                alert("error");
+            }
         }
 
-        getUserData();
-    }, [userInfos]);
+        fetchUserData();
+    }, [id, userData]);
 
     return (
         <div className={style.titleContainer}>
             <h1 className={style.title}>
                 Bonjour {""}
-                <span className={style.name}>{userInfos?.firstName}</span>
+                <span className={style.name}>
+                    {userData?.userInfos.firstName}
+                </span>
             </h1>
             <p className={style.text}>
                 Félicitation! Vous avez explosé vos objectifs hier {"\u{1f44f}"}{" "}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUserAverageSession } from "../../repositories/userAverageSessionsRepository";
+import { getUserAverageSession } from "../../repositories/userRepository";
 import { useUserId } from "../../utils/userHooks";
 import style from "./AverageSession.module.scss";
 /**
@@ -13,17 +13,15 @@ export function AverageSession() {
     useEffect(() => {
         /**
          *
-         * @returns {SessionAverage} average session
+         *  Encapsulate getUserInfos call since useEffect cannot be async
          */
         async function getAverageSession() {
             const userAverageSessions = await getUserAverageSession(id);
-            console.log(userAverageSessions.sessions);
-            setAverageSessions(userAverageSessions.sessions);
+            setAverageSessions(userAverageSessions);
         }
-        getAverageSession();
-    }, [averageSessions]);
 
-    console.log(averageSessions);
+        getAverageSession();
+    }, [id, averageSessions]);
 
     return (
         <article className={style.averageSessionArticle}>
