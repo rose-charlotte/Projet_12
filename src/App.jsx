@@ -20,13 +20,18 @@ function App() {
             <header>
                 <TopNavBar />
             </header>
-            <main className={style.main}>
-                <LeftNavBar />
-                <div className={style.container}>
+
+            <main className={style.mainContainer}>
+                <nav className={style.navBar}>
+                    <LeftNavBar />
+                </nav>
+                <div className={style.elementContainer}>
                     <Welcome />
-                    <DailySession />
-                    <AverageSession />
-                    <Completion />
+                    <section className={style.container}>
+                        <DailySession />
+                        <AverageSession />
+                        <Completion />
+                    </section>
                 </div>
             </main>
         </UserContext.Provider>
