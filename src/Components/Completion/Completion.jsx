@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getUserData } from "../../repositories/userRepository";
 import { useUserId } from "../../utils/userHooks";
 
+import style from "./Completion.module.scss";
+
 /**
  *
  * @returns {React.JSX.Element} completion journalière
@@ -24,5 +26,9 @@ export function Completion() {
         }
         getCompletion();
     }, [id, completion]);
-    return <>completion: {completion * 100}% </>;
+    return (
+        <article className={style.completionArticle}>
+            completion: {completion * 100}%{" "}
+        </article>
+    );
 }
