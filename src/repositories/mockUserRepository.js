@@ -14,6 +14,7 @@ import {
  */
 export function getUserDataFromFile(id) {
     const userData = USER_MAIN_DATA.find((userData) => userData.id === id);
+
     return Promise.resolve(userData);
 }
 
@@ -49,5 +50,22 @@ export function getUsersAverageSessionFromFile(id) {
  */
 export function getUserPerformanceFromFile(id) {
     const userPerformance = USER_PERFORMANCE.find((user) => user.userId === id);
+
+    const arrayOfKind = Object.entries(userPerformance.kind);
+    const kindMap = new Map(arrayOfKind);
+    console.log(kindMap.keys());
+
+    // if (kindMap.keys()(userPerformance.data[0].kind)) {
+    //     console.log("ca match");
+    // } else {
+    //     console.log("essaye encore");
+    // }
+
+    // if (userPerformance.data[0].kind === "1"){
+    //     co
+    // }
+
+    //console.log(userPerformance);
+
     return Promise.resolve(userPerformance);
 }

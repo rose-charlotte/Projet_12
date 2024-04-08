@@ -8,6 +8,8 @@ import { UserContext } from "./utils/contexts";
 import { AverageSession } from "./Components/AverageSession/AverageSession";
 import { Completion } from "./Components/Completion/Completion";
 
+import { KeyDataList } from "./Components/KeyData/KeyDataList/KeyDataList";
+
 /**
  *
  * @returns {React.JSX.Element} app component
@@ -29,6 +31,7 @@ function App() {
                     <Welcome />
                     <section className={style.container}>
                         <DailySession />
+                        <KeyDataList />
                         <AverageSession />
                         <Completion />
                     </section>

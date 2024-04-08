@@ -1,0 +1,18 @@
+@import "src/index.scss";
+
+.dataItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.quantity {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 500;
+    color: $lightGreyColor;
+}

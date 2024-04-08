@@ -13,7 +13,7 @@ export function AverageSession() {
     useEffect(() => {
         /**
          *
-         *  Encapsulate getUserInfos call since useEffect cannot be async
+         *  Encapsulate getAverageSession call since useEffect cannot be async
          */
         async function getAverageSession() {
             const userAverageSessions = await getUserAverageSession(id);
