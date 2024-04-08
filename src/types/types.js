@@ -53,3 +53,25 @@
  * @property {number} day
  * @property {number} sessionLenght
  */
+
+/**
+ * @typedef UserPerformance
+ * @type {object}
+ * @property {number} userId
+ * @property {Kind} Kind
+ * @property {Data[]} activityDataType
+ */
+
+/**
+ * @typedef Kind
+ * @type { object}
+ * @property {string} TypeOfActivity
+ */
+
+/**
+ *
+ * @typedef Data
+ * @type {object}
+ * @property {string} value
+ * @property {number} kind
+ */
