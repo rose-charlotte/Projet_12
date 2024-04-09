@@ -28,22 +28,22 @@ export function KeyDataList() {
         <article className={style.dataList}>
             <KeyDataItem
                 src={"src/assets/calories-icon (1).svg"}
-                quantity={data.calorieCount}
+                quantity={data?.calorieCount}
                 name={"calories"}
             />
             <KeyDataItem
                 src={"src/assets/protein-icon.svg"}
-                quantity={data.proteinCount}
+                quantity={data?.proteinCount}
                 name={"Proteines"}
             />
             <KeyDataItem
                 src={"src/assets/carbs-icon.svg"}
-                quantity={data.carbohydrateCount}
+                quantity={data?.carbohydrateCount}
                 name={"Glucides"}
             />
             <KeyDataItem
                 src={"src/assets/fat-icon.svg"}
-                quantity={data.lipidCount}
+                quantity={data?.lipidCount}
                 name={"Lipides"}
             />
         </article>
