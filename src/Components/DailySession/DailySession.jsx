@@ -3,6 +3,15 @@ import { useUserId } from "../../utils/userHooks";
 import { getUserActivity } from "../../repositories/userRepository";
 import { useEffect, useState } from "react";
 
+import {
+    BarChart,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    Legend,
+    Bar,
+} from "recharts";
 /**
  *
  * @returns {React.JSX.Element} tableau des activités quotidiennes
@@ -17,22 +26,38 @@ export function DailySession() {
          *  Encapsulate getUserInfos call since useEffect cannot be async
          */
         async function getUserActivitySession() {
-            const userActivities = await getUserActivity(id);
-            setUserActivities(userActivities);
+            const getUserActivities = await getUserActivity(id);
+            setUserActivities(getUserActivities);
         }
         getUserActivitySession();
     }, [id, userActivities]);
+    console.log(userActivities);
 
     return (
-        <article className={style.ActivitiesArticle}>
-            <h1 className={style.title}>Activité quotidienne</h1>
+        <article className={style.activitiesArticle}>
+            <BarChart
+                width={835}
+                height={350}
+                data={userActivities}
+                barCategoryGap="40%"
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="day" />
+                <YAxis
+                    orientation="right"
+                    dataKey="kilogram"
+                    // domain={["dataMin -1", "dataMax + 1"]}
+                    axisLine={false}
+                    tickLine={false}
+                    tickCount={4}
+                    padding={{ top: 50, left: 30 }}
+                />
 
-            {userActivities?.map((activity) => (
-                <ul className={style.articleListContainer} key={activity.day}>
-                    <li>{activity.kilogram}</li>
-                    <li>{activity.calories}</li>
-                </ul>
-            ))}
+                <Tooltip />
+                <Legend iconType="circle" align="right" verticalAlign="top" />
+                <Bar dataKey="kilogram" fill="#282D30" />
+                <Bar dataKey="calories" fill="#E60000" />
+            </BarChart>
         </article>
     );
 }
