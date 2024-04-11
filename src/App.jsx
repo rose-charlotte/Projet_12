@@ -9,6 +9,7 @@ import { AverageSession } from "./Components/AverageSession/AverageSession";
 import { Completion } from "./Components/Completion/Completion";
 
 import { KeyDataList } from "./Components/KeyData/KeyDataList/KeyDataList";
+import { Activities } from "./Components/Activities/Activities";
 
 /**
  *
@@ -33,6 +34,7 @@ function App() {
                         <DailySession />
                         <KeyDataList />
                         <AverageSession />
+                        <Activities />
                         <Completion />
                     </section>
                 </div>

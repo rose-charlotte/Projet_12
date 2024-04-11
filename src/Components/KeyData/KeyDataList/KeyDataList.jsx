@@ -23,7 +23,6 @@ export function KeyDataList() {
         getKeyData();
     }, [id, data]);
 
-    console.log(data);
     return (
         <article className={style.dataList}>
             <KeyDataItem
