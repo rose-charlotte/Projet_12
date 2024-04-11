@@ -1,8 +1,13 @@
 .activitiesArticle {
     margin: 100px;
+    width: 835px;
+    height: 320px;
+    background-color: #fbfbfb;
 }
 
-.articleListContainer {
-    display: flex;
-    gap: 30px;
+.title {
+    font-size: 15px;
+    font-weight: 500;
+    padding-top: 30px;
+    padding-left: 30px;
 }

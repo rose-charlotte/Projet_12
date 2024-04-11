@@ -31,27 +31,28 @@ export function DailySession() {
         }
         getUserActivitySession();
     }, [id, userActivities]);
-    console.log(userActivities);
 
     return (
         <article className={style.activitiesArticle}>
+            <h1 className={style.title}>Activité quotidienne</h1>
             <BarChart
                 width={835}
                 height={350}
                 data={userActivities}
                 barCategoryGap="40%"
             >
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="day" />
                 <YAxis
                     orientation="right"
                     dataKey="kilogram"
-                    // domain={["dataMin -1", "dataMax + 1"]}
+                    yAxisId="right"
                     axisLine={false}
                     tickLine={false}
                     tickCount={4}
                     padding={{ top: 50, left: 30 }}
                 />
+                <YAxis orientation="left" dataKey="calories" hide={true} />
 
                 <Tooltip />
                 <Legend iconType="circle" align="right" verticalAlign="top" />
