@@ -1,5 +1,21 @@
+@import "src/index.scss";
+
 .completionArticle {
-    border: 1px solid black;
-    background-color: yellow;
-    width: 20%;
+    width: 260px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fbfbfb;
+}
+.title {
+    font-size: 15px;
+    font-weight: 500;
+    align-self: flex-start;
+}
+.text {
+    font-size: 16px;
+    font-weight: 500;
+    color: $lightGreyColor;
 }

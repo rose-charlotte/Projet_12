@@ -3,6 +3,7 @@ import { getUserData } from "../../repositories/userRepository";
 import { useUserId } from "../../utils/userHooks";
 
 import style from "./Completion.module.scss";
+import { RadialBarChart, PolarAngleAxis, RadialBar } from "recharts";
 
 /**
  *
@@ -19,16 +20,63 @@ export function Completion() {
         async function getCompletion() {
             try {
                 const userCompletion = await getUserData(id);
-                setCompletion(userCompletion.score);
+
+                setCompletion(
+                    userCompletion.score
+                        ? userCompletion.score
+                        : userCompletion.todayScore,
+                );
             } catch {
                 alert("error");
             }
         }
         getCompletion();
     }, [id, completion]);
+    console.log(completion);
+    const progression = [
+        {
+            pourcentage: completion * 100,
+        },
+    ];
+    const circleSize = 200;
+
     return (
         <article className={style.completionArticle}>
-            completion: {completion * 100}%{" "}
+            <h1 className={style.title}>Score</h1>
+            <RadialBarChart
+                width={circleSize}
+                height={circleSize}
+                cx={circleSize / 2}
+                cy={circleSize / 2}
+                innerRadius={90}
+                outerRadius={110}
+                barSize={8}
+                data={progression}
+                startAngle={90}
+                endAngle={450}
+            >
+                <PolarAngleAxis
+                    type="number"
+                    domain={[0, 100]}
+                    angleAxisId={0}
+                    tick={false}
+                />
+                <RadialBar
+                    background={false}
+                    dataKey="pourcentage"
+                    cornerRadius={circleSize / 2}
+                    fill="#FF0101"
+                />
+                <text
+                    x={circleSize / 2}
+                    y={circleSize / 2}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    className={style.text}
+                >
+                    {completion * 100}% de votre objectif
+                </text>
+            </RadialBarChart>
         </article>
     );
 }
