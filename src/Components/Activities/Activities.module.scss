@@ -1,7 +1,9 @@
 @import "src/index.scss";
 
 .activitiesContainer {
-    // width: 260px;
-    // height: 260px;
+    width: 260px;
+    height: 260px;
     background-color: $greyColor;
+    margin-bottom: 30px;
+    border-radius: 5px;
 }
