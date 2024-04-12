@@ -1,15 +1,28 @@
 .mainContainer {
     display: flex;
-    overflow: scroll;
 }
 .elementContainer {
     display: flex;
     width: 100%;
+    height: 100vh;
     flex-direction: column;
+    overflow: scroll;
 }
 .container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 100px;
+    margin: 100px 100px 50px 150px;
+}
+
+.individualRate {
+    display: flex;
+    gap: 113px;
+    flex-direction: column;
+}
+.rates {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }

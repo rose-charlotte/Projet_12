@@ -1,8 +1,8 @@
 import style from "./Activities.module.scss";
 
-import { getUserPerformance } from "../../repositories/userRepository";
-import { useUserId } from "../../utils/userHooks";
-import { useEffect, useState } from "react";
+// import { getUserPerformance } from "../../repositories/userRepository";
+// import { useUserId } from "../../utils/userHooks";
+// import { useEffect, useState } from "react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
 /**
@@ -33,7 +33,7 @@ export function Activities() {
     ];
     return (
         <article className={style.activitiesContainer}>
-            <RadarChart width={300} height={300} data={performance}>
+            <RadarChart width={250} height={250} data={performance}>
                 <PolarGrid radialLines={false} />
                 <PolarAngleAxis dataKey="kind" />
 

@@ -31,14 +31,21 @@ function App() {
                 <div className={style.elementContainer}>
                     <Welcome />
                     <section className={style.container}>
-                        <DailySession />
-                        <KeyDataList />
-                        <AverageSession />
-                        <Activities />
-                        <Completion />
+                        <div className={style.individualRate}>
+                            <DailySession />
+                            <div className={style.rates}>
+                                <AverageSession />
+                                <Activities />
+                                <Completion />
+                            </div>
+                        </div>
+                        <div className={style.generalInfo}>
+                            <KeyDataList />
+                        </div>
                     </section>
                 </div>
             </main>
+            <footer></footer>
         </UserContext.Provider>
     );
 }
