@@ -2,6 +2,7 @@ import { getUserData } from "../../repositories/userRepository";
 import { useEffect, useState } from "react";
 import style from "./Welcome.module.scss";
 import { useUserId } from "../../utils/userHooks";
+import { Erreur } from "../Erreur/Erreur";
 
 /**
  *
@@ -29,15 +30,22 @@ export function Welcome() {
 
     return (
         <div className={style.titleContainer}>
-            <h1 className={style.title}>
-                Bonjour {""}
-                <span className={style.name}>
-                    {userData?.userInfos.firstName}
-                </span>
-            </h1>
-            <p className={style.text}>
-                Félicitation! Vous avez explosé vos objectifs hier {"\u{1f44f}"}{" "}
-            </p>
+            {userData && (
+                <>
+                    {" "}
+                    <h1 className={style.title}>
+                        Bonjour {""}
+                        <span className={style.name}>
+                            {userData?.userInfos.firstName}
+                        </span>
+                    </h1>
+                    <p className={style.text}>
+                        Félicitation! Vous avez explosé vos objectifs hier{" "}
+                        {"\u{1f44f}"}{" "}
+                    </p>
+                </>
+            )}
+            {!userData && <Erreur />}
         </div>
     );
 }
