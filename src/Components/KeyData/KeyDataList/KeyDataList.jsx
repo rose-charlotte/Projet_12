@@ -4,6 +4,7 @@ import { KeyDataItem } from "../KeyDataItem/KeyDataItem";
 import { getUserData } from "../../../repositories/userRepository";
 import { useUserId } from "../../../utils/userHooks";
 import { useEffect, useState } from "react";
+import { Erreur } from "../../Erreur/Erreur";
 
 /**
  *
@@ -25,26 +26,32 @@ export function KeyDataList() {
 
     return (
         <article className={style.dataList}>
-            <KeyDataItem
-                src={"src/assets/calories-icon (1).svg"}
-                quantity={data?.calorieCount}
-                name={"calories"}
-            />
-            <KeyDataItem
-                src={"src/assets/protein-icon.svg"}
-                quantity={data?.proteinCount}
-                name={"Proteines"}
-            />
-            <KeyDataItem
-                src={"src/assets/carbs-icon.svg"}
-                quantity={data?.carbohydrateCount}
-                name={"Glucides"}
-            />
-            <KeyDataItem
-                src={"src/assets/fat-icon.svg"}
-                quantity={data?.lipidCount}
-                name={"Lipides"}
-            />
+            {data && (
+                <>
+                    {" "}
+                    <KeyDataItem
+                        src={"src/assets/calories-icon (1).svg"}
+                        quantity={`${data?.calorieCount}Kcal`}
+                        name={"calories"}
+                    />
+                    <KeyDataItem
+                        src={"src/assets/protein-icon.svg"}
+                        quantity={`${data?.proteinCount}g`}
+                        name={"Proteines"}
+                    />
+                    <KeyDataItem
+                        src={"src/assets/carbs-icon.svg"}
+                        quantity={`${data?.carbohydrateCount}g`}
+                        name={"Glucides"}
+                    />
+                    <KeyDataItem
+                        src={"src/assets/fat-icon.svg"}
+                        quantity={`${data?.lipidCount}g`}
+                        name={"Lipides"}
+                    />
+                </>
+            )}
+            {!data && <Erreur />}
         </article>
     );
 }

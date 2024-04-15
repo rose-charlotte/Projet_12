@@ -16,7 +16,9 @@ export function KeyDataItem(props) {
         <article className={style.dataItem}>
             <img src={src} />
             <div className={style.dataItemText}>
-                <h1 className={style.quantity}>{quantity}</h1>
+                <h1 className={style.quantity}>
+                    {quantity} {}
+                </h1>
                 <p className={style.name}>{name}</p>
             </div>
         </article>
@@ -25,6 +27,6 @@ export function KeyDataItem(props) {
 
 KeyDataItem.propTypes = {
     src: PropTypes.string,
-    quantity: PropTypes.number,
+    quantity: PropTypes.string,
     name: PropTypes.string,
 };

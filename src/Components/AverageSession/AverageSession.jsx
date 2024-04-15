@@ -4,6 +4,7 @@ import { useUserId } from "../../utils/userHooks";
 import style from "./AverageSession.module.scss";
 
 import { LineChart, XAxis, YAxis, Tooltip, Line } from "recharts";
+import { Erreur } from "../Erreur/Erreur";
 
 /**
  *
@@ -33,17 +34,20 @@ export function AverageSession() {
         <article className={style.averageSessionArticle}>
             <h1 className={style.title}>Durée Moyenne des sessions</h1>
 
-            <LineChart data={averageSessions} width={255} height={126}>
-                <XAxis dataKey="day" stroke="white" />
-                <YAxis hide={true} />
-                <Tooltip dataKey="sessionLength" />
-                <Line
-                    type="monotone"
-                    dataKey="sessionLength"
-                    dot={false}
-                    stroke="white"
-                />
-            </LineChart>
+            {averageSessions && (
+                <LineChart data={averageSessions} width={255} height={126}>
+                    <XAxis dataKey="day" stroke="white" />
+                    <YAxis hide={true} />
+                    <Tooltip dataKey="sessionLength" />
+                    <Line
+                        type="monotone"
+                        dataKey="sessionLength"
+                        dot={false}
+                        stroke="white"
+                    />
+                </LineChart>
+            )}
+            {!averageSessions && <Erreur />}
         </article>
     );
 }
