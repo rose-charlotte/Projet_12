@@ -54,23 +54,23 @@
  * @property {number} sessionLenght
  */
 
-// /**
-//  * @typedef UserPerformance
-//  * @type {object}
-//  * @property {number} userId
-//  * @property {Kind} Kind
-//  * @property {Data[]} activityDataType
-//  */
-// /**
-//  *
-//  * @typedef Data
-//  * @type {object}
-//  * @property {string} value
-//  * @property {Kind} kind
-//  */
+/**
+ * @typedef UserPerformance
+ * @type {object}
+ * @property {number} userId
+ * @property {Kind} Kind
+ * @property {Data[]} activityDataType
+ */
+/**
+ *
+ * @typedef Data
+ * @type {object}
+ * @property {string} value
+ * @property {Kind} kind
+ */
 
-// /**
-//  * @typedef Kind
-//  * @type { object}
-//  * @property {string} TypeOfActivity
-//  */
+/**
+ * @typedef Kind
+ * @type { object}
+ * @property {string} TypeOfActivity
+ */

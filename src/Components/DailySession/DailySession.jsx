@@ -42,7 +42,11 @@ export function DailySession() {
                 barCategoryGap="40%"
             >
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="day" />
+                <XAxis
+                    axisLine={false}
+                    tickLine={false}
+                    padding={{ bottom: 200 }}
+                />
                 <YAxis
                     orientation="right"
                     dataKey="kilogram"
@@ -54,7 +58,11 @@ export function DailySession() {
                 />
                 <YAxis orientation="left" dataKey="calories" hide={true} />
 
-                <Tooltip />
+                <Tooltip
+                    viewBox={{ width: 39, height: 63 }}
+                    contentStyle={{ backgroundColor: "#E60000" }}
+                    itemStyle={{ color: "white" }}
+                />
                 <Legend iconType="circle" align="right" verticalAlign="top" />
                 <Bar dataKey="kilogram" fill="#282D30" />
                 <Bar dataKey="calories" fill="#E60000" />

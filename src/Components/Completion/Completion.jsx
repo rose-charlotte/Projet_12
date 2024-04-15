@@ -11,7 +11,7 @@ import { RadialBarChart, PolarAngleAxis, RadialBar } from "recharts";
  */
 export function Completion() {
     const id = useUserId();
-    const [completion, setCompletion] = useState();
+    const [completion, setCompletion] = useState(0);
 
     useEffect(() => {
         /**
@@ -32,7 +32,7 @@ export function Completion() {
         }
         getCompletion();
     }, [id, completion]);
-    console.log(completion);
+
     const progression = [
         {
             pourcentage: completion * 100,
@@ -55,14 +55,8 @@ export function Completion() {
                 startAngle={90}
                 endAngle={450}
             >
-                <PolarAngleAxis
-                    type="number"
-                    domain={[0, 100]}
-                    angleAxisId={0}
-                    tick={false}
-                />
+                <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
                 <RadialBar
-                    background={false}
                     dataKey="pourcentage"
                     cornerRadius={circleSize / 2}
                     fill="#FF0101"
