@@ -26,7 +26,7 @@ export function Welcome() {
         }
 
         fetchUserData();
-    }, [id, userData]);
+    }, [id]);
 
     return (
         <div className={style.titleContainer}>

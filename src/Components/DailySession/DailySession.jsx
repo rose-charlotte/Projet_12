@@ -32,9 +32,9 @@ export function DailySession() {
             setUserActivities(getUserActivities);
         }
         getUserActivitySession();
-    }, [id, userActivities]);
+    }, [id]);
 
-    console.log(userActivities);
+    // console.log(userActivities);
 
     return (
         <article className={style.activitiesArticle}>

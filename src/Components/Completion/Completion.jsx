@@ -31,7 +31,7 @@ export function Completion() {
             }
         }
         getCompletion();
-    }, [id, completion]);
+    }, [id]);
 
     const progression = [
         {

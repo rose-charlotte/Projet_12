@@ -22,7 +22,7 @@ export function KeyDataList() {
             setData(data.keyData);
         }
         getKeyData();
-    }, [id, data]);
+    }, [id]);
 
     return (
         <article className={style.dataList}>

@@ -25,11 +25,8 @@ export function AverageSession() {
         }
 
         getAverageSession();
-    }, [id, averageSessions]);
+    }, [id]);
 
-    console.log(averageSessions);
-
-    //console.log(data);
     return (
         <article className={style.averageSessionArticle}>
             <h1 className={style.title}>Durée Moyenne des sessions</h1>
