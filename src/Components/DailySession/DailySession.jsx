@@ -34,8 +34,7 @@ export function DailySession() {
         getUserActivitySession();
     }, [id]);
 
-    // console.log(userActivities);
-
+    console.log(userActivities);
     return (
         <article className={style.activitiesArticle}>
             <h1 className={style.title}>Activité quotidienne</h1>
@@ -51,6 +50,7 @@ export function DailySession() {
                         axisLine={false}
                         tickLine={false}
                         padding={{ bottom: 200 }}
+                        dataKey="day"
                     />
                     <YAxis
                         orientation="right"

@@ -26,7 +26,6 @@ export function AverageSession() {
 
         getAverageSession();
     }, [id]);
-
     return (
         <article className={style.averageSessionArticle}>
             <h1 className={style.title}>Durée Moyenne des sessions</h1>
