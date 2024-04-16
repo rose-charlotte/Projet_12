@@ -11,6 +11,7 @@ import {
     getUserActivityFromAPI,
     getUserDataFromAPI,
     getUsersAverageSessionFromAPI,
+    getUserPerformanceFromAPI,
 } from "./APIUserRepository";
 
 /**
@@ -37,12 +38,26 @@ export async function getUserData(id) {
  * @returns {Promise<UserActivity | undefined>} activity Data for the specified user ou undefined
  */
 export async function getUserActivity(id) {
-    try {
-        if (import.meta.env.MODE === "mock") {
-            return await getUserActivityFromFile(id);
-        }
+    // try {
+    //     if (import.meta.env.MODE === "mock") {
+    //         return await getUserActivityFromFile(id);
+    //     }
 
-        return await getUserActivityFromAPI(id);
+    //     return await getUserActivityFromAPI(id);
+    // } catch (error) {
+    //     logError(error);
+    //     throw error;
+    // }
+    try {
+        const userActivity = await (import.meta.env.MODE === "mock"
+            ? getUserActivityFromFile(id)
+            : getUserActivityFromAPI(id));
+
+        return userActivity.map((data) => ({
+            day: new Date(data.day).getDate(),
+            kilogram: data.kilogram,
+            calories: data.calories,
+        }));
     } catch (error) {
         logError(error);
         throw error;
@@ -70,14 +85,18 @@ export async function getUserAverageSession(id) {
 /**
  *
  * @param {number} id id
- * @returns {Promise<UserPerformance | undefined>} data for the specified user or undefined
+ * @returns {Promise<UserPerformance[] | undefined>} data for the specified user or undefined
  */
 export async function getUserPerformance(id) {
     try {
-        if (import.meta.env.MODE === "mock") {
-            return getUserPerformanceFromFile(id);
-        }
-        //return getUserPerformanceFromAPI(id);
+        const userPerformance = await (import.meta.env.MODE === "mock"
+            ? getUserPerformanceFromFile(id)
+            : getUserPerformanceFromAPI(id));
+
+        return userPerformance.data.map((data) => ({
+            kind: userPerformance.kind[data.kind],
+            value: data.value,
+        }));
     } catch (error) {
         logError(error);
         throw error;
