@@ -46,33 +46,10 @@ export function getUsersAverageSessionFromFile(id) {
 /**
  *
  * @param {number} id id
- * @returns {Promise<UserPerformance | undefined>} data for the specified user or undefined
+ * @returns {Promise<UserPerformance[] | undefined>} data for the specified user or undefined
  */
 export function getUserPerformanceFromFile(id) {
     const userPerformance = USER_PERFORMANCE.find((user) => user.userId === id);
 
-    // const kindArray = Object.entries(userPerformance.kind);
-    // const kindMap = new Map(kindArray);
-    //console.log(kindMap.get(toString(dataKindArray[0])));
-    const dataKindArray = userPerformance.data.map((dataKind) => dataKind.kind);
-    //console.log(dataKindArray);
-
-    const dataKindName = dataKindArray.map(
-        (data) => userPerformance.kind[data],
-    );
-    console.log(dataKindName);
-
-    const dataValues = userPerformance.data.map((value) => value.value);
-    console.log(dataValues);
-
     return Promise.resolve(userPerformance);
 }
-
-//    const performance = [
-//        { kind: "cardio", value: 200 },
-//        { kind: "energy", value: 240 },
-//        { kind: "endurance", value: 80 },
-//        { kind: "strength", value: 80 },
-//        { kind: "speed", value: 220 },
-//        { kind: "intensity", value: 110 },
-//    ];

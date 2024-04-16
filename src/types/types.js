@@ -57,20 +57,6 @@
 /**
  * @typedef UserPerformance
  * @type {object}
- * @property {number} userId
- * @property {Kind} Kind
- * @property {Data[]} activityDataType
- */
-/**
- *
- * @typedef Data
- * @type {object}
- * @property {string} value
- * @property {Kind} kind
- */
-
-/**
- * @typedef Kind
- * @type { object}
- * @property {string} TypeOfActivity
+ * @property {string} kind
+ * @property {number} value
  */
