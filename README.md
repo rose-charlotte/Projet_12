@@ -8,7 +8,7 @@ This is a React + vite project.
 
 ## How to use
 
--   [NodeJS (**version 12.18**)](https://nodejs.org/en/) and [Npm](https://npmjs.com) are necessary
+[NodeJS (**version 12.18**)](https://nodejs.org/en/) and [Npm](https://npmjs.com) are necessary
 
 Clone the repository on your computer then run:
 
