@@ -2,6 +2,7 @@ import style from "./DailySession.module.scss";
 import { useUserId } from "../../utils/userHooks";
 import { getUserActivity } from "../../repositories/userRepository";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 import {
     BarChart,
@@ -34,6 +35,41 @@ export function DailySession() {
         getUserActivitySession();
     }, [id]);
 
+    const tooltipStyle = {
+        backgroundColor: "#E60000",
+        width: 39,
+        height: 63,
+        color: "white",
+        margin: 10,
+        fontSize: 7,
+        paddingLeft: 15,
+    };
+    const tooltipElementStyle = {
+        paddingTop: 20,
+    };
+    const TooltipContent = ({ payload }) => {
+        console.log(payload);
+        return (
+            <div style={tooltipStyle}>
+                {payload.map((ele) =>
+                    ele.name === "kilogram" ? (
+                        <div style={tooltipElementStyle} key={ele.name}>
+                            {ele.value} Kg{" "}
+                        </div>
+                    ) : (
+                        <div style={tooltipElementStyle} key={ele.name}>
+                            {ele.value} Cal{" "}
+                        </div>
+                    ),
+                )}
+            </div>
+        );
+    };
+
+    TooltipContent.propTypes = {
+        payload: PropTypes.array.isRequired,
+    };
+
     console.log(userActivities);
     return (
         <article className={style.activitiesArticle}>
@@ -64,12 +100,7 @@ export function DailySession() {
                     <YAxis orientation="left" dataKey="calories" hide={true} />
 
                     <Tooltip
-                        contentStyle={{
-                            backgroundColor: "#E60000",
-                            width: 39,
-                            height: 63,
-                        }}
-                        itemStyle={{ color: "white" }}
+                        content={<TooltipContent payload={userActivities} />}
                     />
                     <Legend
                         iconType="circle"
