@@ -16,7 +16,7 @@ import { Activities } from "./Components/Activities/Activities";
  * @returns {React.JSX.Element} app component
  */
 function App() {
-    const [userId, setUserId] = useState(18);
+    const [userId, setUserId] = useState(12);
 
     return (
         <UserContext.Provider value={{ userId, setUserId }}>

@@ -6,4 +6,8 @@
     background-color: $greyColor;
     margin-bottom: 30px;
     border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
