@@ -18,16 +18,17 @@ npm install
 
 To run the project, two choices:
 
-    Dev mode with mock file:
+Dev mode with mock file:
 
-    ```
-    npm run dev:mock
-    ```
+```
+npm run dev:mock
+```
 
-    Dev mode with API calls:
-    ```
-    npm run dev
-    ```
+Dev mode with API calls:
+
+```
+npm run dev
+```
 
 ## Use of JSDoc
 
