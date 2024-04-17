@@ -38,16 +38,6 @@ export async function getUserData(id) {
  * @returns {Promise<UserActivity | undefined>} activity Data for the specified user ou undefined
  */
 export async function getUserActivity(id) {
-    // try {
-    //     if (import.meta.env.MODE === "mock") {
-    //         return await getUserActivityFromFile(id);
-    //     }
-
-    //     return await getUserActivityFromAPI(id);
-    // } catch (error) {
-    //     logError(error);
-    //     throw error;
-    // }
     try {
         const userActivity = await (import.meta.env.MODE === "mock"
             ? getUserActivityFromFile(id)
@@ -70,17 +60,37 @@ export async function getUserActivity(id) {
  * @returns {Promise<UserAverageSessions | undefined>} data for the specified user or undefined
  */
 export async function getUserAverageSession(id) {
-    try {
-        if (import.meta.env.MODE === "mock") {
-            return await getUsersAverageSessionFromFile(id);
-        }
+    // try {
+    //     if (import.meta.env.MODE === "mock") {
+    //         return await getUsersAverageSessionFromFile(id);
+    //     }
 
-        return await getUsersAverageSessionFromAPI(id);
+    //     return await getUsersAverageSessionFromAPI(id);
+    // } catch (error) {
+    //     logError(error);
+    //     throw error;
+    // }
+    try {
+        const dayInLetter = ["L", "M", "M", "J", "V", "S", "D"];
+        const averageSessions = await (import.meta.env.MODE === "mock"
+            ? getUsersAverageSessionFromFile(id)
+            : getUsersAverageSessionFromAPI(id));
+
+        return averageSessions.map((session) => ({
+            day: dayInLetter[session.day - 1],
+            sessionLength: session.sessionLength,
+        }));
     } catch (error) {
         logError(error);
         throw error;
     }
 }
+// const dayInLetter = ["L", "M", "M", "J", "V", "S", "D"];
+// const data = averageSessions.map((session) => ({
+//     day: dayInLetter[session.day - 1],
+//     sessionLength: session.sessionLength,
+// }));
+// console.log("data", data);
 
 /**
  *
