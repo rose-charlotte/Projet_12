@@ -35,42 +35,6 @@ export function DailySession() {
         getUserActivitySession();
     }, [id]);
 
-    const tooltipStyle = {
-        backgroundColor: "#E60000",
-        width: 39,
-        height: 63,
-        color: "white",
-        margin: 10,
-        fontSize: 7,
-        paddingLeft: 15,
-    };
-    const tooltipElementStyle = {
-        paddingTop: 20,
-    };
-    const TooltipContent = ({ payload }) => {
-        console.log(payload);
-        return (
-            <div style={tooltipStyle}>
-                {payload.map((ele) =>
-                    ele.name === "kilogram" ? (
-                        <div style={tooltipElementStyle} key={ele.name}>
-                            {ele.value} Kg{" "}
-                        </div>
-                    ) : (
-                        <div style={tooltipElementStyle} key={ele.name}>
-                            {ele.value} Cal{" "}
-                        </div>
-                    ),
-                )}
-            </div>
-        );
-    };
-
-    TooltipContent.propTypes = {
-        payload: PropTypes.array.isRequired,
-    };
-
-    console.log(userActivities);
     return (
         <article className={style.activitiesArticle}>
             <h1 className={style.title}>Activité quotidienne</h1>
@@ -116,3 +80,37 @@ export function DailySession() {
         </article>
     );
 }
+
+const TooltipContent = ({ payload }) => {
+    const tooltipStyle = {
+        backgroundColor: "#E60000",
+        width: 39,
+        height: 63,
+        color: "white",
+        margin: 10,
+        fontSize: 7,
+        paddingLeft: 15,
+    };
+    const tooltipElementStyle = {
+        paddingTop: 20,
+    };
+    return (
+        <div style={tooltipStyle}>
+            {payload.map((ele) =>
+                ele.name === "kilogram" ? (
+                    <div style={tooltipElementStyle} key={ele.name}>
+                        {ele.value} Kg{" "}
+                    </div>
+                ) : (
+                    <div style={tooltipElementStyle} key={ele.name}>
+                        {ele.value} Cal{" "}
+                    </div>
+                ),
+            )}
+        </div>
+    );
+};
+
+TooltipContent.propTypes = {
+    payload: PropTypes.array.isRequired,
+};
