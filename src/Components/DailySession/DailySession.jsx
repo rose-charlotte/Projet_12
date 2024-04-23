@@ -1,7 +1,7 @@
 import style from "./DailySession.module.scss";
-import { useUserId } from "../../utils/userHooks";
+import { useData, useUserId } from "../../utils/userHooks";
 import { getUserActivity } from "../../repositories/userRepository";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -13,7 +13,6 @@ import {
     Legend,
     Bar,
 } from "recharts";
-import { Erreur } from "../Erreur/Erreur";
 
 /**
  *
@@ -21,23 +20,31 @@ import { Erreur } from "../Erreur/Erreur";
  */
 export function DailySession() {
     const id = useUserId();
-    const [userActivities, setUserActivities] = useState();
 
-    useEffect(() => {
-        /**
-         *
-         *  Encapsulate getUserInfos call since useEffect cannot be async
-         */
-        async function getUserActivitySession() {
-            const getUserActivities = await getUserActivity(id);
-            setUserActivities(getUserActivities);
-        }
-        getUserActivitySession();
-    }, [id]);
+    const fetchUserData = useCallback(() => getUserActivity(id), [id]);
+
+    const {
+        data: userActivities,
+        isLoading,
+        isError,
+        refresh,
+    } = useData(fetchUserData);
 
     return (
         <article className={style.activitiesArticle}>
             <h1 className={style.title}>Activité quotidienne</h1>
+            {isLoading && <p>Loading...</p>}
+
+            {isError && (
+                <button
+                    onClick={() => {
+                        refresh();
+                    }}
+                >
+                    Refresh
+                </button>
+            )}
+
             {userActivities && (
                 <BarChart
                     width={835}
@@ -76,7 +83,7 @@ export function DailySession() {
                 </BarChart>
             )}
 
-            {!userActivities && <Erreur />}
+            {!userActivities && <div>erreur</div>}
         </article>
     );
 }

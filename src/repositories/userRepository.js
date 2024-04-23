@@ -20,6 +20,10 @@ import {
  * @returns {Promise<UserData | undefined>} data for the specified user or undefined
  */
 export async function getUserData(id) {
+    // if (Math.random() < 0.5) {
+    //     throw new Error("BOOO");
+    // }
+
     try {
         if (import.meta.env.MODE === "mock") {
             return await getUserDataFromFile(id);
@@ -95,7 +99,7 @@ export async function getUserAverageSession(id) {
 /**
  *
  * @param {number} id id
- * @returns {Promise<UserPerformance[] | undefined>} data for the specified user or undefined
+ * @returns {Promise<UserPerformance[] | undefined>} performance data for the specified user or undefined
  */
 export async function getUserPerformance(id) {
     try {

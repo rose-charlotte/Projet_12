@@ -1,8 +1,8 @@
 import { getUserData } from "../../repositories/userRepository";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import style from "./Welcome.module.scss";
 import { useUserId } from "../../utils/userHooks";
-import { Erreur } from "../Erreur/Erreur";
+import { useData } from "../../utils/userHooks";
 
 /**
  *
@@ -10,26 +10,37 @@ import { Erreur } from "../Erreur/Erreur";
  */
 export function Welcome() {
     const id = useUserId();
-    const [userData, setUserData] = useState();
 
-    useEffect(() => {
-        /**
-         * Encapsulate getUserInfos call since useEffect cannot be async
-         */
-        async function fetchUserData() {
-            try {
-                const userInfos = await getUserData(id);
-                setUserData(userInfos);
-            } catch {
-                alert("error");
-            }
-        }
+    // const fetchUserData = useCallback(async () => {
+    //     const delay = (ms) =>
+    //         new Promise((resolve) => setTimeout(() => resolve(), ms));
 
-        fetchUserData();
-    }, [id]);
+    //     await delay(2000);
+    //     return await getUserData(id);
+    // }, [id]);
+    const fetchUserData = useCallback(() => getUserData(id), [id]);
+
+    const {
+        data: userData,
+        isLoading,
+        isError,
+        refresh,
+    } = useData(fetchUserData);
 
     return (
         <div className={style.titleContainer}>
+            {isLoading && <p>Loading...</p>}
+
+            {isError && (
+                <button
+                    onClick={() => {
+                        refresh();
+                    }}
+                >
+                    Refresh
+                </button>
+            )}
+
             {userData && (
                 <>
                     {" "}
@@ -45,7 +56,6 @@ export function Welcome() {
                     </p>
                 </>
             )}
-            {!userData && <Erreur />}
         </div>
     );
 }
