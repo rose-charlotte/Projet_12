@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { UserContext } from "./contexts";
-//import { getUserData } from "../repositories/userRepository";
+import { useEffect } from "react";
 
 /**
  *
@@ -26,3 +26,40 @@ export function useUserId() {
 
 //     return userData;
 // }
+
+/**
+ *
+ * @param {*} fetchData getData from id
+ * @returns {*} data, isLoading, isError
+ */
+export function useData(fetchData) {
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
+
+    const getData = useCallback(async () => {
+        try {
+            setIsError(false);
+            const fetchedData = await fetchData();
+            setData(fetchedData);
+        } catch {
+            setIsError(true);
+            setData(undefined);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [fetchData]);
+
+    /**
+     *
+     */
+    function refresh() {
+        getData();
+    }
+
+    useEffect(() => {
+        getData();
+    }, [getData]);
+
+    return { data, isLoading, isError, refresh };
+}

@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { getUserAverageSession } from "../../repositories/userRepository";
-import { useUserId } from "../../utils/userHooks";
+import { useData, useUserId } from "../../utils/userHooks";
 import style from "./AverageSession.module.scss";
 import PropTypes from "prop-types";
 
 import { LineChart, XAxis, YAxis, Tooltip, Line } from "recharts";
-import { Erreur } from "../Erreur/Erreur";
 
 /**
  *
@@ -13,24 +12,39 @@ import { Erreur } from "../Erreur/Erreur";
  */
 export function AverageSession() {
     const id = useUserId();
-    const [averageSessions, setAverageSessions] = useState();
 
-    useEffect(() => {
-        /**
-         *
-         *  Encapsulate getAverageSession call since useEffect cannot be async
-         */
-        async function getAverageSession() {
-            const userAverageSessions = await getUserAverageSession(id);
-            setAverageSessions(userAverageSessions);
-        }
+    //  const fetchUserData = useCallback(() => getUserAverageSession(id), [id]);
 
-        getAverageSession();
+    const fetchUserData = useCallback(async () => {
+        const delay = (ms) =>
+            new Promise((resolve) => setTimeout(() => resolve(), ms));
+
+        await delay(2000);
+        return await getUserAverageSession(id);
     }, [id]);
+
+    const {
+        data: averageSessions,
+        isLoading,
+        isError,
+        refresh,
+    } = useData(fetchUserData);
 
     return (
         <article className={style.averageSessionArticle}>
             <h1 className={style.title}>Durée Moyenne des sessions</h1>
+
+            {isLoading && <p>Loading...</p>}
+
+            {isError && (
+                <button
+                    onClick={() => {
+                        refresh();
+                    }}
+                >
+                    Refresh
+                </button>
+            )}
 
             {averageSessions && (
                 <LineChart data={averageSessions} width={255} height={126}>
@@ -55,7 +69,6 @@ export function AverageSession() {
                     />
                 </LineChart>
             )}
-            {!averageSessions && <Erreur />}
         </article>
     );
 }

@@ -1,41 +1,44 @@
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { getUserData } from "../../repositories/userRepository";
-import { useUserId } from "../../utils/userHooks";
+import { useData, useUserId } from "../../utils/userHooks";
 
 import style from "./Completion.module.scss";
 import { RadialBarChart, PolarAngleAxis, RadialBar } from "recharts";
-import { Erreur } from "../Erreur/Erreur";
+
 /**
  *
  * @returns {React.JSX.Element} completion journalière
  */
 export function Completion() {
     const id = useUserId();
-    const [completion, setCompletion] = useState(0);
 
-    useEffect(() => {
-        /**
-         * Encapsulate getUserInfos call since useEffect cannot be async
-         */
-        async function getCompletion() {
-            try {
-                const userCompletion = await getUserData(id);
+    const fetchUserData = useCallback(() => getUserData(id), [id]);
+    // const fetchUserData = useCallback(async () => {
+    //     const delay = (ms) =>
+    //         new Promise((resolve) => setTimeout(() => resolve(), ms));
 
-                setCompletion(
-                    userCompletion.score
-                        ? userCompletion.score
-                        : userCompletion.todayScore,
-                );
-            } catch {
-                alert("error");
-            }
-        }
-        getCompletion();
-    }, [id]);
+    //     await delay(2000);
+    //     return await getUserData(id);
+    // }, [id]);
+
+    const {
+        data: completion,
+        isLoading,
+        isError,
+        refresh,
+    } = useData(fetchUserData);
+
+    console.log(completion);
+
+    const completionScore = completion?.score
+        ? completion?.score
+        : completion?.todayScore;
+
+    console.log(completionScore);
 
     const progression = [
         {
-            pourcentage: completion * 100,
+            pourcentage: completionScore * 100,
         },
     ];
     const circleSize = 200;
@@ -43,6 +46,19 @@ export function Completion() {
     return (
         <article className={style.completionArticle}>
             <h1 className={style.title}>Score</h1>
+
+            {isLoading && <p>Loading...</p>}
+
+            {isError && (
+                <button
+                    onClick={() => {
+                        refresh();
+                    }}
+                >
+                    Refresh
+                </button>
+            )}
+
             {progression && (
                 <RadialBarChart
                     width={circleSize}
@@ -73,11 +89,10 @@ export function Completion() {
                         dominantBaseline="middle"
                         className={style.text}
                     >
-                        {completion * 100}% de votre objectif
+                        {completionScore * 100}% de votre objectif
                     </text>
                 </RadialBarChart>
             )}
-            {!progression && <Erreur />}
         </article>
     );
 }
