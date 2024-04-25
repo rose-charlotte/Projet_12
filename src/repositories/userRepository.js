@@ -20,10 +20,6 @@ import {
  * @returns {Promise<UserData | undefined>} data for the specified user or undefined
  */
 export async function getUserData(id) {
-    // if (Math.random() < 0.5) {
-    //     throw new Error("BOOO");
-    // }
-
     try {
         if (import.meta.env.MODE === "mock") {
             return await getUserDataFromFile(id);
@@ -64,16 +60,6 @@ export async function getUserActivity(id) {
  * @returns {Promise<UserAverageSessions | undefined>} data for the specified user or undefined
  */
 export async function getUserAverageSession(id) {
-    // try {
-    //     if (import.meta.env.MODE === "mock") {
-    //         return await getUsersAverageSessionFromFile(id);
-    //     }
-
-    //     return await getUsersAverageSessionFromAPI(id);
-    // } catch (error) {
-    //     logError(error);
-    //     throw error;
-    // }
     try {
         const dayInLetter = ["L", "M", "M", "J", "V", "S", "D"];
         const averageSessions = await (import.meta.env.MODE === "mock"
@@ -89,12 +75,6 @@ export async function getUserAverageSession(id) {
         throw error;
     }
 }
-// const dayInLetter = ["L", "M", "M", "J", "V", "S", "D"];
-// const data = averageSessions.map((session) => ({
-//     day: dayInLetter[session.day - 1],
-//     sessionLength: session.sessionLength,
-// }));
-// console.log("data", data);
 
 /**
  *

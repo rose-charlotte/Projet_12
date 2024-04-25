@@ -13,15 +13,7 @@ import { LineChart, XAxis, YAxis, Tooltip, Line } from "recharts";
 export function AverageSession() {
     const id = useUserId();
 
-    //  const fetchUserData = useCallback(() => getUserAverageSession(id), [id]);
-
-    const fetchUserData = useCallback(async () => {
-        const delay = (ms) =>
-            new Promise((resolve) => setTimeout(() => resolve(), ms));
-
-        await delay(2000);
-        return await getUserAverageSession(id);
-    }, [id]);
+    const fetchUserData = useCallback(() => getUserAverageSession(id), [id]);
 
     const {
         data: averageSessions,
@@ -47,14 +39,14 @@ export function AverageSession() {
             )}
 
             {averageSessions && (
-                <LineChart data={averageSessions} width={255} height={126}>
+                <LineChart data={averageSessions} width={270} height={126}>
                     <XAxis
                         dataKey="day"
                         stroke="white"
                         tickLine={false}
                         axisLine={false}
                         tick={{ fontSize: 12, opacity: 0.5 }}
-                        tickMargin={20}
+                        tickMargin={10}
                     />
                     <YAxis dataKey="sessionLength" hide={true} />
                     <Tooltip
@@ -66,6 +58,7 @@ export function AverageSession() {
                         dataKey="sessionLength"
                         dot={false}
                         stroke="white"
+                        width="110%"
                     />
                 </LineChart>
             )}
@@ -75,10 +68,10 @@ export function AverageSession() {
 
 const TooltipContent = ({ payload }) => {
     const tooltipContentStyle = {
-        width: 40,
-        height: 15,
+        width: 50,
+        height: 20,
         backgroundColor: "white",
-        fontSize: 8,
+        fontSize: 10,
         paddingTop: 10,
     };
     const tooltipElementStyle = {

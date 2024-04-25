@@ -11,22 +11,6 @@ export function useUserId() {
     return user.userId;
 }
 
-// export function useUserData() {
-//     const id = useUserId();
-
-//     const [userData, setUserData] = useState(undefined);
-
-//     useEffect(() => {
-//         async function fetchUserData() {
-//             setUserData(await getUserData(id));
-//         }
-
-//         fetchUserData();
-//     }, [id]);
-
-//     return userData;
-// }
-
 /**
  *
  * @param {*} fetchData getData from id

@@ -12,6 +12,7 @@ import {
     Tooltip,
     Legend,
     Bar,
+    ResponsiveContainer,
 } from "recharts";
 
 /**
@@ -46,44 +47,61 @@ export function DailySession() {
             )}
 
             {userActivities && (
-                <BarChart
-                    width={835}
-                    height={300}
-                    data={userActivities}
-                    barCategoryGap="40%"
-                >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis
-                        axisLine={false}
-                        tickLine={false}
-                        padding={{ bottom: 200 }}
-                        dataKey="day"
-                    />
-                    <YAxis
-                        orientation="right"
-                        dataKey="kilogram"
-                        yAxisId="right"
-                        axisLine={false}
-                        tickLine={false}
-                        tickCount={4}
-                        padding={{ top: 50, left: 30 }}
-                    />
-                    <YAxis orientation="left" dataKey="calories" hide={true} />
+                <ResponsiveContainer width="100%" height="90%">
+                    <BarChart data={userActivities} barCategoryGap="40%">
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                        <XAxis
+                            axisLine={false}
+                            tickLine={false}
+                            padding={{ bottom: 200 }}
+                            dataKey="day"
+                        />
+                        <YAxis
+                            orientation="right"
+                            dataKey="kilogram"
+                            yAxisId="right"
+                            axisLine={false}
+                            tickLine={false}
+                            tickCount={4}
+                            padding={{ top: 50, left: 30 }}
+                        />
+                        <YAxis
+                            orientation="left"
+                            dataKey="calories"
+                            hide={true}
+                        />
 
-                    <Tooltip
-                        content={<TooltipContent payload={userActivities} />}
-                    />
-                    <Legend
-                        iconType="circle"
-                        align="right"
-                        verticalAlign="top"
-                    />
-                    <Bar dataKey="kilogram" fill="#282D30" />
-                    <Bar dataKey="calories" fill="#E60000" />
-                </BarChart>
+                        <Tooltip
+                            content={
+                                <TooltipContent payload={userActivities} />
+                            }
+                        />
+                        <Legend
+                            width="500"
+                            iconType="circle"
+                            iconSize="9"
+                            align="right"
+                            verticalAlign="top"
+                            wrapperStyle={{
+                                top: -17,
+                                fontSize: "14px",
+                            }}
+                        />
+                        <Bar
+                            dataKey="kilogram"
+                            name="Poids (kg)"
+                            fill="#282D30"
+                            radius={[15, 15, 0, 0]}
+                        />
+                        <Bar
+                            dataKey="calories"
+                            name="Calories brûlées (kCal)"
+                            fill="#E60000"
+                            radius={[15, 15, 0, 0]}
+                        />
+                    </BarChart>
+                </ResponsiveContainer>
             )}
-
-            {!userActivities && <div>erreur</div>}
         </article>
     );
 }
@@ -95,23 +113,21 @@ const TooltipContent = ({ payload }) => {
         height: 63,
         color: "white",
         margin: 10,
-        fontSize: 7,
+        fontSize: 10,
         paddingLeft: 15,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap: 20,
     };
-    const tooltipElementStyle = {
-        paddingTop: 20,
-    };
+
     return (
         <div style={tooltipStyle}>
             {payload.map((ele) =>
-                ele.name === "kilogram" ? (
-                    <div style={tooltipElementStyle} key={ele.name}>
-                        {ele.value} Kg{" "}
-                    </div>
+                ele.name === "Poids (kg)" ? (
+                    <div key={ele.name}>{ele.value} Kg </div>
                 ) : (
-                    <div style={tooltipElementStyle} key={ele.name}>
-                        {ele.value} Cal{" "}
-                    </div>
+                    <div key={ele.name}>{ele.value} Cal </div>
                 ),
             )}
         </div>

@@ -13,13 +13,6 @@ export function Completion() {
     const id = useUserId();
 
     const fetchUserData = useCallback(() => getUserData(id), [id]);
-    // const fetchUserData = useCallback(async () => {
-    //     const delay = (ms) =>
-    //         new Promise((resolve) => setTimeout(() => resolve(), ms));
-
-    //     await delay(2000);
-    //     return await getUserData(id);
-    // }, [id]);
 
     const {
         data: completion,
@@ -28,13 +21,7 @@ export function Completion() {
         refresh,
     } = useData(fetchUserData);
 
-    console.log(completion);
-
-    const completionScore = completion?.score
-        ? completion?.score
-        : completion?.todayScore;
-
-    console.log(completionScore);
+    const completionScore = completion?.score ?? completion?.todayScore;
 
     const progression = [
         {
@@ -59,7 +46,7 @@ export function Completion() {
                 </button>
             )}
 
-            {progression && (
+            {completionScore && (
                 <RadialBarChart
                     width={circleSize}
                     height={circleSize}
@@ -89,7 +76,7 @@ export function Completion() {
                         dominantBaseline="middle"
                         className={style.text}
                     >
-                        {completionScore * 100}% de votre objectif
+                        {`${completionScore * 100} % de votre objectif`}
                     </text>
                 </RadialBarChart>
             )}

@@ -3,7 +3,7 @@
 .averageSessionArticle {
     width: 230px;
     height: 230px;
-    background-color: $redColor;
+    background: linear-gradient(90deg, #ff0101 70%, #e60202 20%);
     display: flex;
     flex-direction: column;
     align-items: center;

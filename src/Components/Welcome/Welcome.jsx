@@ -11,13 +11,6 @@ import { useData } from "../../utils/userHooks";
 export function Welcome() {
     const id = useUserId();
 
-    // const fetchUserData = useCallback(async () => {
-    //     const delay = (ms) =>
-    //         new Promise((resolve) => setTimeout(() => resolve(), ms));
-
-    //     await delay(2000);
-    //     return await getUserData(id);
-    // }, [id]);
     const fetchUserData = useCallback(() => getUserData(id), [id]);
 
     const {

@@ -54,7 +54,6 @@ export function KeyDataList() {
                     />
                 </>
             )}
-            {!data && <div>Erreur</div>}
         </article>
     );
 }
