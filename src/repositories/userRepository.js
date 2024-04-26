@@ -87,8 +87,16 @@ export async function getUserPerformance(id) {
             ? getUserPerformanceFromFile(id)
             : getUserPerformanceFromAPI(id));
 
+        const UserPerformanceKind = [
+            "Cardio",
+            "Energie",
+            "Endurance",
+            "Force",
+            "Vitesse",
+            "Intensité",
+        ];
         return userPerformance.data.map((data) => ({
-            kind: userPerformance.kind[data.kind],
+            kind: UserPerformanceKind[data.kind - 1],
             value: data.value,
         }));
     } catch (error) {

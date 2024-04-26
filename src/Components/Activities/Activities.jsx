@@ -16,14 +16,6 @@ import {
  */
 export function Activities() {
     const id = useUserId();
-
-    // const fetchUserData = useCallback(async () => {
-    //     const delay = (ms) =>
-    //         new Promise((resolve) => setTimeout(() => resolve(), ms));
-
-    //     await delay(2000);
-    //     return await getUserPerformance(id);
-    // }, [id]);
     const fetchUserData = useCallback(() => getUserPerformance(id), [id]);
     const {
         data: performance,

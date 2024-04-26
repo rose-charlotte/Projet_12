@@ -34,7 +34,7 @@ export function KeyDataList() {
                     {" "}
                     <KeyDataItem
                         src={"src/assets/calories-icon (1).svg"}
-                        quantity={`${data?.keyData.calorieCount}Kcal`}
+                        quantity={`${data?.keyData.calorieCount}KCal`}
                         name={"calories"}
                     />
                     <KeyDataItem
